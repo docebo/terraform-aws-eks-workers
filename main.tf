@@ -14,7 +14,7 @@ module "label" {
   stage      = var.stage
   name       = var.name
   delimiter  = var.delimiter
-  attributes = [compact(concat(var.attributes, ["workers"]))]
+  attributes = compact(concat(var.attributes, ["workers"]))
   tags       = local.tags
   enabled    = var.enabled
 }
