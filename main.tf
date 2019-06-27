@@ -137,7 +137,7 @@ data "aws_ami" "eks_worker" {
     values = [var.eks_worker_ami_name_filter]
   }
 
-  owners      = ["602401143452"] # Amazon
+  owners = ["602401143452"] # Amazon
 }
 
 module "autoscale_group" {
@@ -157,32 +157,32 @@ module "autoscale_group" {
   tags                      = module.label.tags
 
   instance_type                           = var.instance_type
-  subnet_ids                              = [var.subnet_ids]
+  subnet_ids                              = var.subnet_ids
   min_size                                = var.min_size
   max_size                                = var.max_size
   associate_public_ip_address             = var.associate_public_ip_address
-  block_device_mappings                   = [var.block_device_mappings]
-  credit_specification                    = [var.credit_specification]
+  block_device_mappings                   = var.block_device_mappings
+  credit_specification                    = var.credit_specification
   disable_api_termination                 = var.disable_api_termination
   ebs_optimized                           = var.ebs_optimized
-  elastic_gpu_specifications              = [var.elastic_gpu_specifications]
+  elastic_gpu_specifications              = var.elastic_gpu_specifications
   instance_initiated_shutdown_behavior    = var.instance_initiated_shutdown_behavior
-  instance_market_options                 = [var.instance_market_options]
+  instance_market_options                 = var.instance_market_options
   key_name                                = var.key_name
-  placement                               = [var.placement]
+  placement                               = var.placement
   enable_monitoring                       = var.enable_monitoring
-  load_balancers                          = [var.load_balancers]
+  load_balancers                          = var.load_balancers
   health_check_grace_period               = var.health_check_grace_period
   health_check_type                       = var.health_check_type
   min_elb_capacity                        = var.min_elb_capacity
   wait_for_elb_capacity                   = var.wait_for_elb_capacity
-  target_group_arns                       = [var.target_group_arns]
+  target_group_arns                       = var.target_group_arns
   default_cooldown                        = var.default_cooldown
   force_delete                            = var.force_delete
   termination_policies                    = var.termination_policies
   suspended_processes                     = var.suspended_processes
   placement_group                         = var.placement_group
-  enabled_metrics                         = [var.enabled_metrics]
+  enabled_metrics                         = var.enabled_metrics
   metrics_granularity                     = var.metrics_granularity
   wait_for_capacity_timeout               = var.wait_for_capacity_timeout
   protect_from_scale_in                   = var.protect_from_scale_in
@@ -231,4 +231,3 @@ data "template_file" "config_map_aws_auth" {
     aws_iam_role_arn = local.use_existing_instance_profile == "true" ? join("", data.aws_iam_instance_profile.default.*.role_arn) : join("", aws_iam_role.default.*.arn)
   }
 }
-
