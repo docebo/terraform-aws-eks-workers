@@ -259,7 +259,7 @@ variable "enabled_metrics" {
 }
 
 variable "wait_for_capacity_timeout" {
-  type        = integer
+  type        = number
   description = "A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior"
   default     = 10
 }
