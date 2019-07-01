@@ -259,9 +259,9 @@ variable "enabled_metrics" {
 }
 
 variable "wait_for_capacity_timeout" {
-  type        = string
+  type        = integer
   description = "A maximum duration that Terraform should wait for ASG instances to be healthy before timing out. Setting this to '0' causes Terraform to skip all Capacity Waiting behavior"
-  default     = "10m"
+  default     = 10
 }
 
 variable "min_elb_capacity" {
@@ -270,7 +270,7 @@ variable "min_elb_capacity" {
 }
 
 variable "wait_for_elb_capacity" {
-  type        = number
+  type        = bool
   description = "Setting this will cause Terraform to wait for exactly this number of healthy instances in all attached load balancers on both create and update operations. Takes precedence over `min_elb_capacity` behavior"
   default     = false
 }
